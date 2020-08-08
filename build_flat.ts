@@ -9,7 +9,11 @@ descrptions des différents chapitres de cours
 
 Version 0.1 2020/08/08
 - Creation du fichier
-- Mise en place du squelette de l'aide
+- Creation d'une fonction de contrôle : Info
+- Creation d'une class b_materiau (cela deviendra un tabelau par la suite...)
+- Création d'une convertisseur Poisiton Absolue, poistion relative pour revenir 
+  à un point donné.
+-
 **/
 
 function info(texte:String){
@@ -26,17 +30,36 @@ class b_materiau {
 }
 
 /* Définition des blocs de référence */
-b_sol = new b_materiau(Block.Cactus);
-b_mur = new b_materiau(Block.Cactus);
-b_escalier = new b_materiau(Block.Glay);
-b_vitre = new b_materiau(Block.GlassPane);
-b_toit = new b_materiau(Block.ChiseledStoneBricks)
+let b_sol = new b_materiau(Block.Cactus);
+let b_mur = new b_materiau(Block.Cactus);
+let b_escalier = new b_materiau(Block.Clay);
+let b_vitre = new b_materiau(Block.GlassPane);
+let b_toit = new b_materiau(Block.ChiseledStoneBricks)
 
 // l'ajout d'une chaine vide tranfrme le Number en String
-info(b_mur.materiau+"");
+info(b_mur.materiau + "");
+
+// Renvoie l'opposée d'une position
+function pos_Opp(p_Ref:Position){
+    let pos_Opp:Position;
+    let x_Opp=-p_Ref.getValue(Axis.X);
+    let y_Opp=-p_Ref.getValue(Axis.Y);
+    let z_Opp=-p_Ref.getValue(Axis.Z);
+    return(pos(x_Opp,y_Opp,z_Opp));
+}
+
+// modifier une position p_Abs absolue en position
+// relative par rapport à p_Ref
+function pos_Abs_To_Rel(p_Abs:Position,p_Ref:Position){
+    let p_Rel = positions.add(p_Abs,pos_Opp(p_Ref));
+    return(p_Rel);
+}
+let p=pos(4,64,26);
+let p1=pos_Abs_To_Rel(p,player.position());
+player.teleport(p1);
+
 
 /* 
-	la suite est d'avoir un convertisseur coordonnées relatif/absolu
 	Il fautdra aussi avoir un batiment qui peut stocker la mémoire du 
 	point origine de la construction, si on veut la reprendre !
 	Les bâtiments vont être au départ tous diriger vers le nord
