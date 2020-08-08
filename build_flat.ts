@@ -26,11 +26,11 @@ class b_materiau {
 }
 
 /* Définition des blocs de référence */
-b_sol = new block_materiau(Block.cactus);
-b_mur = new block_materiau(Block.cactus);
-b_escalier = new block_materiau(Block.glay);
-b_vitre = new block_materiau(Block.glass_pane);
-b_toit = new block_materiau(Block.chiseled_stone_bricks)
+b_sol = new b_materiau(Block.Cactus);
+b_mur = new b_materiau(Block.Cactus);
+b_escalier = new b_materiau(Block.Glay);
+b_vitre = new b_materiau(Block.GlassPane);
+b_toit = new b_materiau(Block.ChiseledStoneBricks)
 
 // l'ajout d'une chaine vide tranfrme le Number en String
 info(b_mur.materiau+"");
