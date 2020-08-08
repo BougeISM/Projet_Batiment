@@ -1,0 +1,17 @@
+{
+    "name": "projet_batiment",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "build_flat.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "supportedTargets": [
+        "minecraft"
+    ],
+    "preferredEditor": "tsprj"
+}
