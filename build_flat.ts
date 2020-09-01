@@ -11,9 +11,15 @@ Version 0.1 2020/08/08
 - Creation du fichier
 - Creation d'une fonction de contrôle : Info
 - Creation d'une class b_materiau (cela deviendra un tabelau par la suite...)
-- Création d'une convertisseur Poisiton Absolue, poistion relative pour revenir 
-  à un point donné.
+- Création d'une convertisseur Poisiton Absolue, position relative pour revenir 
+  à un point donné. (en fait, je crois que j'ai ré-écrit la fonction world()...
+  Mais, bon, c'était intéressant ;-)
 -
+
+Version 0.2 2020/08/12
+- Création d'un point origine, visuel, avec l'aide du programme de magilisau 
+  pour marquer le sol de l'origine
+  
 **/
 
 function info(texte:String){
@@ -58,7 +64,20 @@ let p=pos(4,64,26);
 let p1=pos_Abs_To_Rel(p,player.position());
 player.teleport(p1);
 
+function setOrigine(){
+    builder.teleport_to(player.position());
+    builder.set_origin();
+    retourOrigine(0);
+    info("Init done" + builder.position());
+}
 
+function info(t){
+    player.say("Info message : " + t + " " );
+}
+
+
+player.on_chat("origine",setOrigine)	
+	
 /* 
 	Il fautdra aussi avoir un batiment qui peut stocker la mémoire du 
 	point origine de la construction, si on veut la reprendre !
